@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta charset="UTF-8" />
+    <title></title>
+</head>
+<body>
+    姓名：<input type="text" th:value="${user.name}" th:name="${user.name}"/><br/>
+    年龄：<input type="text" th:value="${user.age}"/><br/>
+    生日：<input th:value="${#dates.format(user.birthday, 'yyyy-MM-dd')}"/><br/>
+<hr/>
+<div th:object="${user}">
+    姓名：<input type="text" th:value="*{name}" th:name="*{name}"/><br/>
+    年龄：<input type="text" th:value="*{age}"/><br/>
+    生日：<input th:value="*{#dates.format(birthday, 'yyyy-MM-dd')}"/><br/>
+</div>
+<hr/>
+<span th:text="${user.desc}"></span>
+<span th:utext="${user.desc}"></span>
+<hr/>
+<a th:href="@{http://www.baidu.com}">跳转到百度</a>
+<hr/>
+<form th:action="@{/th/postform}" th:object="${user}" th:method="post">
+    <input type="text" th:field="*{name}"/><br/>
+    <input type="text" th:field="*{age}"/><br/>
+    <input type="submit"/>
+</form>
+<hr/>
+<span th:if="${user.age}==18">18岁的天空</span>
+<span th:if="${user.age} gt 18">大于18岁</span>
+<span th:if="${user.age} lt 18">小于18岁</span>
+<span th:if="${user.age} ge 18">大于等于18岁</span>
+<span th:if="${user.age} le 18">小于等于18岁</span>
+<hr/>
+
+<select>
+    <option>请选择</option>
+    <option th:selected="${user.name eq 'lee'}">lee</option>
+    <option th:selected="${user.name eq 'imooc'}">imooc</option>
+    <option th:selected="${user.name eq 'Lecx'}">Lecx</option>
+</select>
+<hr/>
+<table>
+    <tr>
+        <td>姓名</td>
+        <td>年龄</td>
+        <td>年龄备注</td>
+        <td>生日</td>
+    </tr>
+    <tr th:each="person:${userList}">
+        <td th:text="${person.name}">姓名</td>
+        <td th:text="${person.age}">年龄</td>
+        <td th:text="${person.age gt 18}?你老了:你很年轻">你老了</td>
+        <td th:text="${#dates.format(person.birthday,'yyyy-MM-dd hh:mm:ss')}">生日</td>
+    </tr>
+</table>
+
+<div th:switch="${user.name}">
+    <p th:case="'lee'">lee</p>
+    <p th:case="#{roles.manager}">普通管理员管理员</p>
+    <p th:case="#{roles.superadmin}">超级管理员</p>
+    <p th:case="*">其他用户</p>
+</div>
+
+</body>
+</html>
