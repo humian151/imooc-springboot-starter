@@ -1,0 +1,20 @@
+CREATE TABLE `leecx`.`sys_user`(
+  `id` VARCHAR(76) NOT NULL,
+  `username` VARCHAR(255) COMMENT '用户名，登录名',
+  `password` VARCHAR(255) COMMENT '密码',
+  `nickname` VARCHAR(255) COMMENT '昵称',
+  `age` INT COMMENT '年龄',
+  `sex` INT COMMENT '性别，0男，1女',
+  `job` INT COMMENT '职业类型： 1：Java开发 2：前端开发 3：大数据开发 4：ios开发 5：Android开发 6：Linux系统工程师 7：PHP开发 8：.net开发 9：C/C++ 10：学生 11：其它',
+  `face_image` VARCHAR(255) COMMENT '头像地址',
+  `province` VARCHAR(255) COMMENT '省',
+  `city` VARCHAR(255) COMMENT '市',
+  `district` VARCHAR(255) COMMENT '区',
+  `address` VARCHAR(255) COMMENT '详细地址',
+  `auth_salt` VARCHAR(255) COMMENT '用于权限的“盐”',
+  `last_login_ip` VARCHAR(255) COMMENT '最后一次登录IP',
+  `last_login_time` DATE COMMENT '最后一次登录时间',
+  `is_delete` INT,
+  `regist_time` DATE,
+  PRIMARY KEY (`id`)
+);
